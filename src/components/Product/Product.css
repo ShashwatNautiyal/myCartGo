@@ -1,0 +1,40 @@
+.product {
+   padding: 1rem;
+   display: flex;
+   background: #ffffff;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.product img {
+   width: 200px;
+   height: 250px;
+   object-fit: contain;
+   margin: 1rem 0;
+}
+
+.product__info {
+   text-align: center;
+   font-size: 1.3rem;
+}
+
+.product__info > p:nth-child(1) {
+   font-weight: 600;
+   margin-bottom: 0.5rem;
+}
+
+.product__info > p:nth-child(2) {
+   font-weight: 400;
+   margin-bottom: 0.5rem;
+}
+
+.product__info > button {
+   cursor: pointer;
+   width: 150px;
+   padding: 0.5rem 1rem;
+   font-size: 0.9rem;
+   border: 1px solid #000000;
+   color: #000000;
+   background: #ffffff;
+}

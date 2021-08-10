@@ -1,0 +1,52 @@
+.filter {
+   display: flex;
+   margin: 0 auto;
+   padding: 1rem;
+   background: #ffffff;
+   width: fit-content;
+   margin-bottom: 2rem;
+}
+
+.filter > * {
+   margin-right: 1rem;
+}
+
+.filter select {
+   cursor: pointer;
+   width: fit-content;
+   padding: 0.2rem 0.5rem;
+   font-size: 0.9rem;
+   border: 1px solid #000000;
+   color: #000000;
+   background: #ffffff;
+}
+
+@media only screen and (max-width: 790px) {
+   .filter {
+      width: 100%;
+      justify-content: center;
+   }
+
+   .filter > * {
+      display: flex;
+      flex-direction: column;
+   }
+}
+
+@media only screen and (max-width: 560px) {
+   .filter {
+      flex-direction: column;
+      width: 100%;
+   }
+
+   .filter > * {
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      margin-right: 0;
+   }
+
+   .filter select {
+      width: 170px;
+   }
+}

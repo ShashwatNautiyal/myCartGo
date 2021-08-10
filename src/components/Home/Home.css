@@ -1,0 +1,16 @@
+.home__products {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(290px, 2fr));
+   grid-gap: 1rem;
+}
+
+.home {
+   padding: 2rem;
+   padding-top: 0;
+}
+
+.home__products > h2 {
+   padding: 2rem;
+   background: #ffffff;
+   text-align: center;
+}
