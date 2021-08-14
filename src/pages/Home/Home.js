@@ -1,7 +1,7 @@
-import Product from "../Product/Product";
+import Product from "../../components/Product/Product";
 import { useSelector } from "react-redux";
 import "./Home.css";
-import FilterBar from "../FilterBar/FilterBar";
+import FilterBar from "../../components/FilterBar/FilterBar";
 import { useEffect, useState } from "react";
 
 const Home = () => {

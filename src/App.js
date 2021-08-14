@@ -3,10 +3,10 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import "./App.css";
-import Cart from "./components/Cart/Cart";
-import Home from "./components/Home/Home";
+import Cart from "./pages/Cart/Cart";
+import ProductDetails from "./pages/ProductDetails/ProductDetails";
+import Home from "./pages/Home/Home";
 import Nav from "./components/Nav/Nav";
-import ProductDetails from "./components/ProductDetails/ProductDetails";
 import { setProducts } from "./redux/Actions";
 
 function App() {
