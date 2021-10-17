@@ -1,81 +1,75 @@
-import {
-   ADD_TO_CART,
-   DECREMENT_QUANTITY,
-   INCREMENT_QUANTITY,
-   REMOVE_FROM_CART,
-   SET_PRODUCTS,
-} from "../Actions";
+import { ADD_TO_CART, DECREMENT_QUANTITY, INCREMENT_QUANTITY, REMOVE_FROM_CART, SET_PRODUCTS } from "../Actions";
 
 const initialState = {
-   products: null,
-   cart: [],
+	products: null,
+	cart: [],
 };
 
 const cartReducer = (state = initialState, action) => {
-   console.log(action);
+	console.log(action);
 
-   let newCart;
-   let index;
-   switch (action.type) {
-      case SET_PRODUCTS:
-         return {
-            ...state,
-            products: action.payload,
-         };
-      case ADD_TO_CART:
-         newCart = [...state.cart];
-         index = newCart.findIndex((item) => item.id === action.payload.id);
+	let newCart;
+	let index;
+	switch (action.type) {
+		case SET_PRODUCTS:
+			return {
+				...state,
+				products: action.payload,
+			};
+		case ADD_TO_CART:
+			newCart = [...state.cart];
+			index = newCart.findIndex((item) => item._id === action.payload._id);
 
-         if (index < 0) {
-            newCart.push({ ...action.payload, quantity: 1 });
-         } else {
-            const updatedItem = {
-               ...newCart[index],
-            };
+			if (index < 0) {
+				newCart.push({ ...action.payload, quantity: 1 });
+			} else {
+				const updatedItem = {
+					...newCart[index],
+				};
 
-            updatedItem.quantity++;
-            newCart[index] = updatedItem;
-         }
-         return { ...state, cart: newCart };
-      case REMOVE_FROM_CART:
-         newCart = [...state.cart];
+				updatedItem.quantity++;
+				newCart[index] = updatedItem;
+			}
+			return { ...state, cart: newCart };
+		case REMOVE_FROM_CART:
+			newCart = [...state.cart];
 
-         index = newCart.findIndex((item) => item.id === action.payload);
-         newCart.splice(index, 1);
+			index = newCart.findIndex((item) => item._id === action.payload);
+			newCart.splice(index, 1);
 
-         return {
-            ...state,
-            cart: newCart,
-         };
-      case INCREMENT_QUANTITY:
-         newCart = [...state.cart];
-         index = newCart.findIndex((item) => item.id === action.payload);
+			return {
+				...state,
+				cart: newCart,
+			};
+		case INCREMENT_QUANTITY:
+			newCart = [...state.cart];
+			index = newCart.findIndex((item) => item._id === action.payload);
 
-         const incrementedItem = {
-            ...newCart[index],
-         };
+			const incrementedItem = {
+				...newCart[index],
+			};
 
-         incrementedItem.quantity++;
-         newCart[index] = incrementedItem;
+			incrementedItem.quantity++;
+			newCart[index] = incrementedItem;
 
-         return { ...state, cart: newCart };
-      case DECREMENT_QUANTITY:
-         newCart = [...state.cart];
-         index = state.cart.findIndex((item) => item.id === action.payload);
+			return { ...state, cart: newCart };
+		case DECREMENT_QUANTITY:
+			newCart = [...state.cart];
+			index = state.cart.findIndex((item) => item._id === action.payload);
 
-         const decrementedItem = {
-            ...state.cart[index],
-         };
+			const decrementedItem = {
+				...state.cart[index],
+			};
 
-         decrementedItem.quantity--;
-         newCart[index] = decrementedItem;
+			decrementedItem.quantity--;
+			newCart[index] = decrementedItem;
 
-         return { ...state, cart: newCart };
-      default:
-         return {
-            ...state,
-         };
-   }
+			return { ...state, cart: newCart };
+		default:
+			return {
+				...state,
+			};
+	}
 };
 
 export default cartReducer;

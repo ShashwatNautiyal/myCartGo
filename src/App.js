@@ -10,31 +10,31 @@ import Nav from "./components/Nav/Nav";
 import { setProducts } from "./redux/Actions";
 
 function App() {
-   const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-   useEffect(() => {
-      fetchProducts();
-   }, []);
+	useEffect(() => {
+		fetchProducts();
+	}, []);
 
-   const fetchProducts = () => {
-      axios
-         .get("https://fakestoreapi.com/products")
-         .then((Response) => dispatch(setProducts(Response.data)))
-         .catch((error) => console.log(error));
-   };
+	const fetchProducts = () => {
+		axios
+			.get("https://my-cart-go-server.herokuapp.com/products")
+			.then((Response) => dispatch(setProducts(Response.data)))
+			.catch((error) => console.log(error));
+	};
 
-   return (
-      <Router>
-         <div className="app">
-            <Nav />
-            <Switch>
-               <Route path="/" exact component={Home} />
-               <Route path="/checkout" exact component={Cart} />
-               <Route path="/:productId" exact component={ProductDetails} />
-            </Switch>
-         </div>
-      </Router>
-   );
+	return (
+		<Router>
+			<div className="app">
+				<Nav />
+				<Switch>
+					<Route path="/" exact component={Home} />
+					<Route path="/cart" exact component={Cart} />
+					<Route path="/:productId" exact component={ProductDetails} />
+				</Switch>
+			</div>
+		</Router>
+	);
 }
 
 export default App;
