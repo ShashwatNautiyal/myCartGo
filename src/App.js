@@ -8,17 +8,20 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Home from "./pages/Home/Home";
 import Nav from "./components/Nav/Nav";
 import { setProducts } from "./redux/Actions";
+import Login from "./pages/Login/Login";
+import Signup from "./pages/Signup/Signup";
 
 function App() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		fetchProducts();
+		// eslint-disable-next-line
 	}, []);
 
 	const fetchProducts = () => {
 		axios
-			.get("https://my-cart-go-server.herokuapp.com/products")
+			.get(process.env.REACT_APP_BASE_URL + "/products")
 			.then((Response) => dispatch(setProducts(Response.data)))
 			.catch((error) => console.log(error));
 	};
@@ -29,6 +32,8 @@ function App() {
 				<Nav />
 				<Switch>
 					<Route path="/" exact component={Home} />
+					<Route path="/login" exact component={Login} />
+					<Route path="/signup" exact component={Signup} />
 					<Route path="/cart" exact component={Cart} />
 					<Route path="/:productId" exact component={ProductDetails} />
 				</Switch>

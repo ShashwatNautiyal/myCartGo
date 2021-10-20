@@ -13,11 +13,12 @@ const ProductDetails = () => {
 
 	useEffect(() => {
 		fetchProducts();
+		// eslint-disable-next-line
 	}, []);
 
 	const fetchProducts = () => {
 		axios
-			.get("https://my-cart-go-server.herokuapp.com/products/" + productId)
+			.get(process.env.REACT_APP_BASE_URL + "/products/" + productId)
 			.then((Response) => setProductDetails(Response.data))
 			.catch((error) => console.log(error));
 	};

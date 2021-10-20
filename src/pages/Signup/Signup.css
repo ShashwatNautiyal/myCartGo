@@ -1,0 +1,79 @@
+.signup {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #ffffff;
+	height: 80%;
+	width: 40%;
+	max-height: 900px;
+	max-width: 600px;
+	min-width: 400px;
+	padding: 5rem 2rem;
+}
+
+.card > :first-child {
+	font-size: 2rem;
+	text-transform: uppercase;
+	text-align: center;
+	color: #333333;
+	font-weight: 700;
+	margin-bottom: 3rem;
+}
+
+.card > .inputs {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+
+.card > .inputs > div {
+	position: relative;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 80%;
+	border: 1px solid #000000;
+	margin-bottom: 1.5rem;
+}
+
+.card > .inputs > div > i {
+	position: absolute;
+	left: 10px;
+}
+
+.card > .inputs > div > input {
+	width: 100%;
+	min-width: 200px;
+	max-width: 500px;
+	padding: 0.5rem 1rem;
+	padding-left: 2.1rem;
+	font-size: 16px;
+	color: #333333;
+	border: none;
+}
+
+.card > button {
+	cursor: pointer;
+	width: 170px;
+	padding: 0.5rem 1rem;
+	font-size: 0.9rem;
+	border: 1px solid #000000;
+	color: #000000;
+	background: #ffffff;
+	text-transform: uppercase;
+	margin-top: 3rem;
+	margin-bottom: 1rem;
+}
+
+.card a {
+	text-decoration: underline;
+}

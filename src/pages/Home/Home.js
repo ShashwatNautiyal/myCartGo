@@ -57,12 +57,14 @@ const Home = () => {
 				});
 			}
 		}
+		// eslint-disable-next-line
 	}, [filter]);
 
 	useEffect(() => {
 		if (products) {
 			setFinalProducts([...products]);
 		}
+		// eslint-disable-next-line
 	}, [products]);
 
 	return (
