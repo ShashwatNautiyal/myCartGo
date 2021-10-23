@@ -28,7 +28,7 @@ const Login = (props) => {
 				},
 			})
 			.then((response) => {
-				localStorage.setItem("user", JSON.stringify(response.data));
+				localStorage.setItem("user", response.data);
 				dispatch(loginSuccess(response.data));
 				history.push("/");
 			})

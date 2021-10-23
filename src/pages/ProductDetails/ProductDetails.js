@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import CustomLoader from "../../components/Loader/Loader";
 import { addToCart } from "../../redux/Actions";
 import "./ProductDetails.css";
 
@@ -10,18 +11,16 @@ const ProductDetails = () => {
 	const [productDetails, setProductDetails] = useState(null);
 	let { productId } = useParams();
 	const dispatch = useDispatch();
+	const [handleLoader, setHandleLoader] = useState(false);
 
 	useEffect(() => {
-		fetchProducts();
-		// eslint-disable-next-line
-	}, []);
-
-	const fetchProducts = () => {
+		setHandleLoader(true);
 		axios
 			.get(process.env.REACT_APP_BASE_URL + "/products/" + productId)
-			.then((Response) => setProductDetails(Response.data))
+			.then((Response) => setProductDetails(Response.data), setHandleLoader(false))
 			.catch((error) => console.log(error));
-	};
+		// eslint-disable-next-line
+	}, []);
 
 	function capitalizeFirstLetter(string) {
 		return string.charAt(0).toUpperCase() + string.slice(1);
@@ -29,6 +28,7 @@ const ProductDetails = () => {
 
 	return (
 		<>
+			{handleLoader && <CustomLoader />}
 			{productDetails && (
 				<div className="productDetails">
 					<img src={productDetails.image} alt="" />

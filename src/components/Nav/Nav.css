@@ -1,6 +1,21 @@
 .nav {
-   padding: 2rem;
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
+	padding: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.accountDropDown {
+	display: flex;
+	flex-direction: column;
+	padding: 16px;
+	position: absolute;
+	background-color: #ffffff;
+	top: 1.25rem;
+	width: 100%;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.accountDropDown > *:not(:last-child) {
+	margin-bottom: 8px;
 }
