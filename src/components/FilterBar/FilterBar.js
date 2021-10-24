@@ -83,10 +83,10 @@ const FilterBar = () => {
 				<select name="range" value={filters.range} onChange={handleChange}>
 					<option value="none"> None</option>
 					<option value="0-20">$0 - $20</option>
-					<option value="20-50"> $20 - $50</option>
-					<option value="50-100"> $50 - $100</option>
-					<option value="100-500"> $100 - $500</option>
-					<option value="500-1000"> $500 - $1000</option>
+					<option value="20-50">$20 - $50</option>
+					<option value="50-100">$50 - $100</option>
+					<option value="100-500">$100 - $500</option>
+					<option value="500-1000">$500 - $1000</option>
 				</select>
 			</div>
 		</form>

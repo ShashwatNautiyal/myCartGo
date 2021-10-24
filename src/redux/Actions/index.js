@@ -1,6 +1,7 @@
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const SET_PRODUCTS = "SET_PRODUCTS";
+export const SET_CART_PRODUCTS = "SET_CART_PRODUCTS";
 export const INCREMENT_QUANTITY = "INCREMENT_QUANTITY";
 export const DECREMENT_QUANTITY = "DECREMENT_QUANTITY";
 export const PRICE_FILTER = "PRICE_FILTER";
@@ -15,6 +16,13 @@ export const REGISTER_FAIL = "REGISTER_FAIL";
 export const setProducts = (products) => {
 	return {
 		type: SET_PRODUCTS,
+		payload: products,
+	};
+};
+
+export const setCartProducts = (products) => {
+	return {
+		type: SET_CART_PRODUCTS,
 		payload: products,
 	};
 };

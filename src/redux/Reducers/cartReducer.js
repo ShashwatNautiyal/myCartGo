@@ -1,4 +1,11 @@
-import { ADD_TO_CART, DECREMENT_QUANTITY, INCREMENT_QUANTITY, REMOVE_FROM_CART, SET_PRODUCTS } from "../Actions";
+import {
+	ADD_TO_CART,
+	DECREMENT_QUANTITY,
+	INCREMENT_QUANTITY,
+	REMOVE_FROM_CART,
+	SET_CART_PRODUCTS,
+	SET_PRODUCTS,
+} from "../Actions";
 
 const initialState = {
 	products: null,
@@ -15,6 +22,11 @@ const cartReducer = (state = initialState, action) => {
 			return {
 				...state,
 				products: action.payload,
+			};
+		case SET_CART_PRODUCTS:
+			return {
+				...state,
+				cart: action.payload,
 			};
 		case ADD_TO_CART:
 			newCart = [...state.cart];

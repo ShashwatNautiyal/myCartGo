@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import CustomLoader from "../../components/Loader/Loader";
 import { loginFail, loginSuccess, logout } from "../../redux/Actions";
 import "./Login.css";
 
@@ -9,6 +10,7 @@ const Login = (props) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const { isLoggedIn } = useSelector((state) => state.authReducer);
+	const [handleLoader, setHandleLoader] = useState(false);
 	let history = useHistory();
 
 	const dispatch = useDispatch();
@@ -21,6 +23,8 @@ const Login = (props) => {
 			password,
 		};
 
+		setHandleLoader(true);
+
 		axios
 			.post(process.env.REACT_APP_BASE_URL + "/user/login", JSON.stringify(loginData), {
 				headers: {
@@ -29,17 +33,20 @@ const Login = (props) => {
 			})
 			.then((response) => {
 				localStorage.setItem("user", response.data);
+				setHandleLoader(false);
 				dispatch(loginSuccess(response.data));
 				history.push("/");
 			})
 			.catch((error) => {
 				alert(error.response.data);
+				setHandleLoader(false);
 				dispatch(loginFail(null));
 			});
 	};
 
 	return (
 		<div className="login">
+			{handleLoader && <CustomLoader />}
 			{!isLoggedIn ? (
 				<form className="card">
 					<p>Login</p>
@@ -48,7 +55,8 @@ const Login = (props) => {
 							<input
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
-								type="text"
+								type="email"
+								name="email"
 								placeholder="Email"
 							/>
 							<i className="fas fa-envelope"></i>
@@ -58,6 +66,7 @@ const Login = (props) => {
 								value={password}
 								onChange={(e) => setPassword(e.target.value)}
 								type="password"
+								name="password"
 								placeholder="Password"
 							/>
 							<i className="fas fa-lock"></i>

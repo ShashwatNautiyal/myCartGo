@@ -1,10 +1,31 @@
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { decrementQuantity, incrementQuantity, removeFromCart } from "../../redux/Actions";
+import { decrementQuantity, incrementQuantity, removeFromCart, setCartProducts } from "../../redux/Actions";
 import "./Cart.css";
+import { userInfo } from "../../utils/userInfo";
+import { useEffect, useState } from "react";
+import CustomLoader from "../../components/Loader/Loader";
 
 const Cart = () => {
 	const cart = useSelector((state) => state.cartReducer.cart);
 	const dispatch = useDispatch();
+	const { isLoggedIn } = useSelector((state) => state.authReducer);
+	const [handleLoader, setHandleLoader] = useState(false);
+
+	useEffect(() => {
+		if (isLoggedIn) {
+			axios
+				.get(process.env.REACT_APP_BASE_URL + "/cart/" + userInfo()._id, {
+					headers: {
+						"auth-token": localStorage.getItem("user"),
+					},
+				})
+				.then((response) => {
+					dispatch(setCartProducts([...response.data]));
+				});
+		}
+		// eslint-disable-next-line
+	}, [isLoggedIn]);
 
 	const decrementItem = (item) => {
 		if (item.quantity > 1) {
@@ -18,6 +39,24 @@ const Cart = () => {
 		}
 	};
 
+	const removeItem = (item) => {
+		if (isLoggedIn) {
+			setHandleLoader(true);
+			axios
+				.delete(process.env.REACT_APP_BASE_URL + "/cart/" + item._id, {
+					headers: {
+						"auth-token": localStorage.getItem("user"),
+					},
+				})
+				.then((res) => {
+					setHandleLoader(false);
+					dispatch(removeFromCart(item._id));
+				});
+		} else {
+			dispatch(removeFromCart(item._id));
+		}
+	};
+
 	const countTotal = () => {
 		const price = cart.map((item) => ({ price: item.price, quantity: item.quantity }));
 		const result = price.map(({ price, quantity }) => price * quantity).reduce((a, b) => a + b, 0);
@@ -26,6 +65,7 @@ const Cart = () => {
 
 	return (
 		<div className="cart">
+			{handleLoader && <CustomLoader />}
 			{cart.length !== 0 ? (
 				<>
 					<div className="cart__subtotal">
@@ -50,7 +90,7 @@ const Cart = () => {
 									<p>{item.quantity}</p>
 									<button onClick={() => incrementItem(item)}>+</button>
 								</div>
-								<button onClick={() => dispatch(removeFromCart(item._id))}>Remove from Cart</button>
+								<button onClick={() => removeItem(item)}>Remove from Cart</button>
 							</div>
 						</div>
 					))}
