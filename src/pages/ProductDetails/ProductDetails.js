@@ -34,9 +34,11 @@ const ProductDetails = () => {
 					<img src={productDetails.image} alt="" />
 					<div className="productDetails__info">
 						<h2>{productDetails.title}</h2>
-						<p className="productDetails__tagline">{productDetails.category.toLocaleUpperCase()}</p>
+						<p className="productDetails__tagline">
+							{productDetails.category.toLocaleUpperCase()}
+						</p>
 						<p>{capitalizeFirstLetter(productDetails.description)}</p>
-						<h2>${productDetails.price}</h2>
+						<h2>₹{productDetails.price}</h2>
 						<p>Dispatched in 7 working days</p>
 						<div className="productDetails__buttons">
 							<button

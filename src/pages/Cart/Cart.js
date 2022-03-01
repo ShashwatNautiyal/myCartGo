@@ -1,6 +1,11 @@
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { decrementQuantity, incrementQuantity, removeFromCart, setCartProducts } from "../../redux/Actions";
+import {
+	decrementQuantity,
+	incrementQuantity,
+	removeFromCart,
+	setCartProducts,
+} from "../../redux/Actions";
 import "./Cart.css";
 import { userInfo } from "../../utils/userInfo";
 import { useEffect, useState } from "react";
@@ -59,7 +64,9 @@ const Cart = () => {
 
 	const countTotal = () => {
 		const price = cart.map((item) => ({ price: item.price, quantity: item.quantity }));
-		const result = price.map(({ price, quantity }) => price * quantity).reduce((a, b) => a + b, 0);
+		const result = price
+			.map(({ price, quantity }) => price * quantity)
+			.reduce((a, b) => a + b, 0);
 		return result;
 	};
 
@@ -73,9 +80,10 @@ const Cart = () => {
 						<div className="cart__total">
 							<h2>Subtotal:</h2>
 							<p>
-								{new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR" }).format(
-									countTotal()
-								)}
+								{new Intl.NumberFormat("en-IN", {
+									style: "currency",
+									currency: "INR",
+								}).format(countTotal())}
 							</p>
 						</div>
 					</div>
@@ -84,7 +92,7 @@ const Cart = () => {
 							<img src={item.image} alt="" />
 							<div className="cart__info">
 								<p>{item.title}</p>
-								<p>Price: ${item.price}</p>
+								<p>Price: ₹{item.price}</p>
 								<div className="cart__itemQuanity">
 									<button onClick={() => decrementItem(item)}>-</button>
 									<p>{item.quantity}</p>
